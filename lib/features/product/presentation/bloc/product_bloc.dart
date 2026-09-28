@@ -1,0 +1,58 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domain/usecases/filter_products.dart';
+import '../../domain/usecases/get_products.dart';
+import '../../domain/usecases/sort_products.dart';
+import 'product_event.dart';
+import 'product_state.dart';
+
+class ProductBloc extends Bloc<ProductEvent, ProductState> {
+  final GetProducts getProducts;
+  final SortProducts sortProducts;
+  final FilterProducts filterProducts;
+
+  ProductBloc({
+    required this.getProducts,
+    required this.sortProducts,
+    required this.filterProducts,
+  }) : super(const ProductState()) {
+    on<LoadProductsEvent>(_onLoadProducts);
+    on<SortProductsEvent>(_onSortProducts);
+    on<FilterLowStockEvent>(_onFilterLowStock);
+    on<ResetFilterEvent>(_onResetFilter);
+  }
+
+  Future<void> _onLoadProducts(
+    LoadProductsEvent event,
+    Emitter<ProductState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true));
+    final results = await getProducts();
+    emit(
+      state.copyWith(
+        isLoading: false,
+        rawProducts: results,
+        displayedProducts: results,
+      ),
+    );
+  }
+
+  void _onSortProducts(SortProductsEvent event, Emitter<ProductState> emit) {
+    final sorted = sortProducts(
+      products: state.displayedProducts,
+      order: event.order,
+    );
+    emit(state.copyWith(displayedProducts: sorted));
+  }
+
+  void _onFilterLowStock(
+    FilterLowStockEvent event,
+    Emitter<ProductState> emit,
+  ) {
+    final filtered = filterProducts(products: state.rawProducts, maxStock: 10);
+    emit(state.copyWith(displayedProducts: filtered));
+  }
+
+  void _onResetFilter(ResetFilterEvent event, Emitter<ProductState> emit) {
+    emit(state.copyWith(displayedProducts: state.rawProducts));
+  }
+}
