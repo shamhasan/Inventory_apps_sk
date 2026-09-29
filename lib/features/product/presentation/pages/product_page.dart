@@ -29,15 +29,18 @@ class ProductPage extends StatelessWidget {
                   spacing: 8.0,
                   children: [
                     ElevatedButton(
+                      key: Key("btn_load"),
                       onPressed: () => bloc.add(LoadProductsEvent()),
                       child: const Text('Load 10k'),
                     ),
                     ElevatedButton(
+                      key: Key("btn_sort"),
                       onPressed: () =>
                           bloc.add(const SortProductsEvent(SortOrder.priceAsc)),
                       child: const Text('Sort Harga Termurah'),
                     ),
                     ElevatedButton(
+                      key: Key("btn_filter"),
                       onPressed: () => bloc.add(FilterLowStockEvent()),
                       child: const Text('Filter Stok < 10'),
                     ),
