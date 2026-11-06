@@ -17,7 +17,7 @@ void main() {
     print('🚨 BUKA DEVTOOLS DAN KLIK "RECORD" DI CPU PROFILER SEKARANG!');
     print('====================================================');
 
-    await Future.delayed(const Duration(minutes: 2));
+    await Future.delayed(const Duration(seconds: 35));
 
     print('🚀 JEDA SELESAI, ROBOT MULAI MENGEKLIK LOAD!');
 
@@ -26,14 +26,14 @@ void main() {
     await tester.pumpAndSettle();
 
     print('Tunggu 15 detik');
-    await Future.delayed(const Duration(seconds: 15));
+    await Future.delayed(const Duration(seconds: 12));
 
     final btnSort = find.byKey(const Key('btn_sort'));
     await tester.tap(btnSort);
     await tester.pumpAndSettle();
 
     print('Tunggu 15 detik');
-    await Future.delayed(const Duration(seconds: 15));
+    await Future.delayed(const Duration(seconds: 12));
 
     final btnFilter = find.byKey(const Key('btn_filter'));
     await tester.tap(btnFilter);
