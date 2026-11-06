@@ -4,20 +4,26 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
         {
-            "name": "inventory_bloc",
+            "name": "flutter run --profile -t integration_test/performance_test.dart",
+            "request": "launch",
+            "type": "dart",
+            "program": "integration_test/performance_test.dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "inventory_bloc (Debug Mode)",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "inventory_bloc (profile mode)",
+            "name": "inventory_bloc (Profile Mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "inventory_bloc (release mode)",
+            "name": "inventory_bloc (Release Mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

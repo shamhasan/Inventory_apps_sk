@@ -17,7 +17,7 @@ void main() {
     print('🚨 BUKA DEVTOOLS DAN ANDROID PROFILER SEKARANG!');
     print('====================================================');
 
-    await Future.delayed(const Duration(seconds: 75));
+    await Future.delayed(const Duration(seconds: 45));
 
     print('🚀 JEDA SELESAI, ROBOT MULAI MENGEKLIK LOAD!');
 
